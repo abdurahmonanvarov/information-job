@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+import axios from "axios";
+
 const getInfo = async () => {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       "https://json-api.uz/api/project/job-list/jobs"
     );
 
-    if (!response.ok) {
-      throw new Error(`Server xatosi: ${response.status}`);
-    }
-
-    const result = await response.json();
-    return result.data;
+    // Axios da `response.data` ma'lumotni to'g'ridan-to'g'ri o'zida saqlaydi
+    return response.data.data; // `data` qismiga murojaat qilamiz
   } catch (error) {
-    console.error("API dan ma’lumot olishda xatolik:", error.message);
+    console.error("API dan ma'lumot olishda xatolik:", error.message);
     return null; // Agar xato bo‘lsa, null qaytaramiz
   }
 };
