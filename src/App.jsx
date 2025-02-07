@@ -144,9 +144,9 @@ function App() {
                   job.languages.map((til) => {
                     return (
                       <li
+                        key={til}
                         onClick={() => addData(til)}
                         className="list-none btn btn-sm"
-                        key={til.languages}
                       >
                         {til}
                       </li>
